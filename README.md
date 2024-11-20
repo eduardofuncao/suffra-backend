@@ -10,13 +10,54 @@ link Github: https://github.com/eduardofuncao/suffra-backend
 
 ## Contextualização
 
-## Arquitetura do projeto
+## Modelagem do projeto
 
 ### Diagrama de Classes
+```mermaid
+classDiagram
+    class Campanha {
+        id_campanha : long
+        nome : String
+        categoria : String
+        data_inicio : LocalDatetime
+        data_fim : LocalDateTime
+        variavel_contabilizada : String
+        id_regiao_vencedora : long
+        beneficio_concedido : String
+    }
+
+    class Regiao {
+        id_regiao : long
+        nome : String
+        descricao : String
+        contador : long
+        campanha : Campanha
+    }
+
+    class Usuario {
+        id_usuario : long
+        nome : String
+        cpf : String
+        email : String
+        telefone : String
+    }
+
+    class Voto {
+        id_voto : long
+        data_voto : LocalDateTime
+        peso : long
+        regiao : Regiao
+        usuario : Usuario
+    }
+
+    Campanha --|> Regiao
+    Usuario --|> Voto
+    Regiao --|> Voto
+```
 
 ### Diagrama Entidade Relacionamento
 
-### Diagrama de Infraestrutura em numve
+### Diagrama de Infraestrutura em nuvem
 
 ### Fluxo HATEOAS
 Será implementado o seguinte fluxo HATEOAS, incluindo o caso de uso de inclusão de voto e encerramento de campanha:
@@ -30,12 +71,11 @@ Em endpoints POST e PUT, foram incluídos exemplos de request body com atributos
 O Swagger também foi habilitado para a aplicação, sendo acessível em `http://localhost:8080/swagger-ui/index.html`
 
 ## TODO
-- complementar com diagramas entidade relacionamento, diagrama de classes
+- complementar com diagramas entidade relacionamento, diagrama de infra de rede
 - documentação
   - texto explicativo do projeto, contextatualizando segundo a ótica da energia sustentável
   - Um arquivo ReadMe no Github, incluindo descrição do sistema desenvolvido, com imagens,
     textos explicativos e exemplos de testes (com exemplos JSON para CRUD via Postman).
-- fluxo hateoas
 - Link do Vídeo demonstrando o software funcionando (não é o vídeo do Pitch) com áudio e
   com duração máxima de 10 minutos (YouTube ou equivalente).
 - endpoints para rodar procedures db
@@ -46,3 +86,5 @@ O Swagger também foi habilitado para a aplicação, sendo acessível em `http:/
 - exceções personalizadas OK
 - deploy em nuvem OK
 - collection do postman OK
+- fluxo hateoas OK
+- diagrama de classes OK
