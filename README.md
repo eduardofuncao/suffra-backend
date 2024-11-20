@@ -82,6 +82,7 @@ Campanha -> Regiao -> Usuario -> Voto
 - Link do Vídeo demonstrando o software funcionando (não é o vídeo do Pitch) com áudio e
   com duração máxima de 10 minutos (YouTube ou equivalente).
 - endpoints para rodar procedures db
+- exceção para caso em que usuário tenta encerrar uma campanha sem regiões associadas
 
 ## DONE
 - implementar endpoints para pegar total de contadores de regioes (geral e individual) OK
