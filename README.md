@@ -70,6 +70,9 @@ Em endpoints POST e PUT, foram incluídos exemplos de request body com atributos
 
 O Swagger também foi habilitado para a aplicação, sendo acessível em `http://localhost:8080/swagger-ui/index.html`
 
+Devido às constraints nas tabelas, é indicado a criação das entidades na seguinte ordem: 
+Campanha -> Regiao -> Usuario -> Voto
+
 ## TODO
 - complementar com diagramas entidade relacionamento, diagrama de infra de rede
 - documentação
