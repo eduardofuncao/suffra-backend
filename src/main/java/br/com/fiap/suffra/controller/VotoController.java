@@ -40,7 +40,7 @@ public class VotoController {
     @PutMapping("/{id}")
     public ResponseEntity<VotoDTO> atualizarVoto(@PathVariable Long id, @RequestBody VotoDTO votoDTO) {
         VotoDTO foundVoto = votoService.buscarVotoPorId(id);
-        foundVoto.setData_voto(votoDTO.getData_voto());
+        foundVoto.setDataVoto(votoDTO.getDataVoto());
         foundVoto.setPeso(votoDTO.getPeso());
         foundVoto.setRegiaoId(votoDTO.getRegiaoId());
         foundVoto.setUsuarioId(votoDTO.getUsuarioId());

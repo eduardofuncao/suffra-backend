@@ -1,6 +1,7 @@
 package br.com.fiap.suffra.controller;
 
 import br.com.fiap.suffra.controller.DTO.CampanhaDTO;
+import br.com.fiap.suffra.controller.DTO.ContadorRegiaoDTO;
 import br.com.fiap.suffra.service.CampanhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,5 +56,15 @@ public class CampanhaController {
     public ResponseEntity<Void> deletarCampanha(@PathVariable long id) {
         campanhaService.deletarCampanha(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/contador")
+    public ResponseEntity<List<ContadorRegiaoDTO>> ExibirContador(@PathVariable Long id) {
+        return ResponseEntity.ok(campanhaService.listarContadorersPorCampanhaId(id));
+    }
+
+    @PutMapping("/{id}/encerrar")
+    public ResponseEntity<CampanhaDTO> encerrarCampanha(@PathVariable Long id) {
+        return ResponseEntity.ok(campanhaService.encerrarCampanhaPorID(id));
     }
 }

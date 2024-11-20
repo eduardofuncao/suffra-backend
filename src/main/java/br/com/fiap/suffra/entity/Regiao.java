@@ -13,13 +13,12 @@ public class Regiao {
     private long id;
 
     @NotBlank(message = "Nome da campanha é obrigatório")
-    @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 50 caracteres")
+    @Size(min = 4, max = 100, message = "O nome deve ter entre 3 e 50 caracteres")
     private String nome;
 
     @Size(min = 3, max = 50, message = "A descrição deve ter entre 3 e 50 caracteres")
     private String descricao;
 
-    @Positive
     private long contador;
 
     @ManyToOne
@@ -49,12 +48,11 @@ public class Regiao {
         this.nome = nome;
     }
 
-    @Positive
     public long getContador() {
         return contador;
     }
 
-    public void setContador(@Positive long contador) {
+    public void setContador(long contador) {
         this.contador = contador;
     }
 

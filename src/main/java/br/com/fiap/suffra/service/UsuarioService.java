@@ -3,6 +3,7 @@ package br.com.fiap.suffra.service;
 import br.com.fiap.suffra.controller.DTO.UsuarioDTO;
 import br.com.fiap.suffra.entity.Usuario;
 import br.com.fiap.suffra.exception.NaoEncontradoException;
+import br.com.fiap.suffra.exception.UsuarioJaExisteException;
 import br.com.fiap.suffra.repository.UsuarioRepository;
 import br.com.fiap.suffra.service.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +24,15 @@ public class UsuarioService {
     private UsuarioMapper usuarioMapper;
 
     public UsuarioDTO criarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario savedUsuario = usuarioRepository.save(usuarioMapper.usuarioDTOToUsuario(usuarioDTO));
+        Usuario usuario = usuarioMapper.usuarioDTOToUsuario(usuarioDTO);
+
+        if (usuario.getCpf() != null && !usuario.getCpf().isEmpty()) {
+            Optional<Usuario> existingUsuario = usuarioRepository.findByCpf(usuario.getCpf());
+            if (existingUsuario.isPresent()) {
+                throw new UsuarioJaExisteException("Usuário com CPF " + usuario.getCpf() + " já existe");
+            }
+        }
+        Usuario savedUsuario = usuarioRepository.save(usuario);
         usuarioDTO.setId(savedUsuario.getId());
         return usuarioDTO;
     }

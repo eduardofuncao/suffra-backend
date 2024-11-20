@@ -1,6 +1,7 @@
 package br.com.fiap.suffra.controller.DTO;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -8,11 +9,11 @@ public class VotoDTO {
 
     private long id;
 
-    @NotBlank(message = "Data do voto é obrigatória")
-    private LocalDateTime data_voto;
+    @NotNull(message = "Data do voto obrigatória")
+    private LocalDateTime dataVoto;
 
-    @NotBlank(message = "peso é obrigatório")
-    private double peso = 1;
+    @NotNull(message = "peso é obrigatório")
+    private long peso = 1;
 
     private long usuarioId;
 
@@ -26,20 +27,20 @@ public class VotoDTO {
         this.id = id;
     }
 
-    public @NotBlank(message = "Data do voto é obrigatória") LocalDateTime getData_voto() {
-        return data_voto;
+    public @NotNull(message = "Data do voto obrigatória") LocalDateTime getDataVoto() {
+        return dataVoto;
     }
 
-    public void setData_voto(@NotBlank(message = "Data do voto é obrigatória") LocalDateTime data_voto) {
-        this.data_voto = data_voto;
+    public void setDataVoto(@NotNull(message = "Data do voto obrigatória") LocalDateTime dataVoto) {
+        this.dataVoto = dataVoto;
     }
 
-    @NotBlank(message = "peso é obrigatório")
-    public double getPeso() {
+    @NotNull(message = "peso é obrigatório")
+    public long getPeso() {
         return peso;
     }
 
-    public void setPeso(@NotBlank(message = "peso é obrigatório") double peso) {
+    public void setPeso(@NotNull(message = "peso é obrigatório") long peso) {
         this.peso = peso;
     }
 

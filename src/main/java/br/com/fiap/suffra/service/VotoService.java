@@ -1,11 +1,11 @@
 package br.com.fiap.suffra.service;
 
 import br.com.fiap.suffra.controller.DTO.VotoDTO;
-import br.com.fiap.suffra.entity.Campanha;
 import br.com.fiap.suffra.entity.Regiao;
 import br.com.fiap.suffra.entity.Usuario;
 import br.com.fiap.suffra.entity.Voto;
 import br.com.fiap.suffra.exception.NaoEncontradoException;
+import br.com.fiap.suffra.exception.VotoFuturoException;
 import br.com.fiap.suffra.repository.RegiaoRepository;
 import br.com.fiap.suffra.repository.UsuarioRepository;
 import br.com.fiap.suffra.repository.VotoRepository;
@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,11 @@ public class VotoService {
                 .orElseThrow(() -> new NaoEncontradoException("Usuario não encontrado"));
         voto.setUsuario(foundUsuario);
 
+        if (voto.getDataVoto().isAfter(LocalDateTime.now().plusDays(1))) {
+            throw new VotoFuturoException("Para registrar um voto, sua data deve ser uma data de hoje ou mais antiga");
+        }
+
+        foundRegiao.setContador(foundRegiao.getContador() + voto.getPeso());
         Voto savedVoto = votoRepository.save(votoMapper.votoDTOToVoto(votoDTO));
         votoDTO.setId(savedVoto.getId());
         return votoDTO;

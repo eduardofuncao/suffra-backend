@@ -2,6 +2,7 @@ package br.com.fiap.suffra.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,11 +14,11 @@ public class Voto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Data do voto é obrigatória")
-    private LocalDateTime data_voto;
+    @NotNull(message = "Data do voto é obrigatória")
+    private LocalDateTime dataVoto;
 
-    @NotBlank(message = "peso é obrigatório")
-    private double peso = 1;
+    @NotNull(message = "peso é obrigatório")
+    private long peso = 1;
 
     @ManyToOne
     private Regiao regiao;
@@ -36,20 +37,20 @@ public class Voto {
         this.id = id;
     }
 
-    public @NotBlank(message = "Data do voto é obrigatória") LocalDateTime getData_voto() {
-        return data_voto;
+    public @NotNull(message = "Data do voto é obrigatória") LocalDateTime getDataVoto() {
+        return dataVoto;
     }
 
-    public void setData_voto(@NotBlank(message = "Data do voto é obrigatória") LocalDateTime data_voto) {
-        this.data_voto = data_voto;
+    public void setDataVoto(@NotNull(message = "Data do voto é obrigatória") LocalDateTime dataVoto) {
+        this.dataVoto = dataVoto;
     }
 
-    @NotBlank(message = "Data do peso é obrigatória")
-    public double getPeso() {
+    @NotNull(message = "peso é obrigatório")
+    public long getPeso() {
         return peso;
     }
 
-    public void setPeso(@NotBlank(message = "Data do peso é obrigatória") double peso) {
+    public void setPeso(@NotNull(message = "peso é obrigatório") long peso) {
         this.peso = peso;
     }
 

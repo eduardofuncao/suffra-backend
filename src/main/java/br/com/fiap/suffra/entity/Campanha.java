@@ -105,7 +105,7 @@ public class Campanha {
         this.variavelContabilizada = variavelContabilizada;
     }
 
-    public long getIdRegiaoVencedora() {
+    public Long getIdRegiaoVencedora() {
         return idRegiaoVencedora;
     }
 

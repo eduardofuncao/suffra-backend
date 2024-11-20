@@ -15,7 +15,6 @@ public class RegiaoDTO {
     @Size(min = 3, max = 50, message = "A descrição deve ter entre 3 e 50 caracteres")
     private String descricao;
 
-    @Positive
     private long contador;
 
     private long campanhaId;
@@ -36,12 +35,11 @@ public class RegiaoDTO {
         this.nome = nome;
     }
 
-    @Positive
     public long getContador() {
         return contador;
     }
 
-    public void setContador(@Positive long contador) {
+    public void setContador(long contador) {
         this.contador = contador;
     }
 
