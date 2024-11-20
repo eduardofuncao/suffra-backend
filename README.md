@@ -18,11 +18,16 @@ link Github: https://github.com/eduardofuncao/suffra-backend
 
 ### Diagrama de Infraestrutura em numve
 
+### Fluxo HATEOAS
+Será implementado o seguinte fluxo HATEOAS, incluindo o caso de uso de inclusão de voto e encerramento de campanha:
+![image](https://github.com/user-attachments/assets/9f1a149f-091a-435a-b387-0507bf614929)
+Caso um dos endpoints representados seja chamado, os link para a sequência do fluxo serão retornados na resposta.
+
 ## Testes
-Para testar o projeto, pode ser utilizada a collection postman fornecida em `suffra-collection/`
+Para testar o projeto, pode ser utilizada a collection postman fornecida em `suffra-collection/`. Ela contém todos os endpoints que podem ser chamados pela aplicação. 
+Em endpoints POST e PUT, foram incluídos exemplos de request body com atributos que passam em todas as validações.
 
-
-
+O Swagger também foi habilitado para a aplicação, sendo acessível em `http://localhost:8080/swagger-ui/index.html`
 
 ## TODO
 - complementar com diagramas entidade relacionamento, diagrama de classes
