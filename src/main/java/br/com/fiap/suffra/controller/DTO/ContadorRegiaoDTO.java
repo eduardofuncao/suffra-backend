@@ -3,16 +3,16 @@ package br.com.fiap.suffra.controller.DTO;
 import jakarta.validation.constraints.Positive;
 
 public class ContadorRegiaoDTO {
-    private Long id;
+    private Long idRegiao;
 
     private Long contador;
 
-    public long getId() {
-        return id;
+    public long getIdRegiao() {
+        return idRegiao;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdRegiao(long idRegiao) {
+        this.idRegiao = idRegiao;
     }
 
     public long getContador() {
@@ -26,8 +26,8 @@ public class ContadorRegiaoDTO {
     public ContadorRegiaoDTO() {
     }
 
-    public ContadorRegiaoDTO(Long id, Long contador) {
-        this.id = id;
+    public ContadorRegiaoDTO(Long idRegiao, Long contador) {
+        this.idRegiao = idRegiao;
         this.contador = contador;
     }
 }

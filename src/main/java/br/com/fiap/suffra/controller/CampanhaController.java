@@ -6,10 +6,14 @@ import br.com.fiap.suffra.service.CampanhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/campanhas")
@@ -59,12 +63,20 @@ public class CampanhaController {
     }
 
     @GetMapping("/{id}/contador")
-    public ResponseEntity<List<ContadorRegiaoDTO>> ExibirContador(@PathVariable Long id) {
-        return ResponseEntity.ok(campanhaService.listarContadorersPorCampanhaId(id));
+    public ResponseEntity<CollectionModel<ContadorRegiaoDTO>> exibirContador(@PathVariable Long id) {
+        List<ContadorRegiaoDTO> contadorRegiaoDTOS = campanhaService.listarContadorersPorCampanhaId(id);
+
+        CollectionModel<ContadorRegiaoDTO> collectionModel = CollectionModel.of(contadorRegiaoDTOS);
+        collectionModel.add(linkTo(methodOn(CampanhaController.class).encerrarCampanha(id)).withRel("encerrar-campanha"));
+
+        return ResponseEntity.ok(collectionModel);
     }
 
     @PutMapping("/{id}/encerrar")
     public ResponseEntity<CampanhaDTO> encerrarCampanha(@PathVariable Long id) {
-        return ResponseEntity.ok(campanhaService.encerrarCampanhaPorID(id));
+        CampanhaDTO endedCampanha = campanhaService.encerrarCampanhaPorID(id);
+        endedCampanha.add(linkTo(methodOn(CampanhaController.class).buscarCampanhaPorId(id)).withRel("campanha"));
+
+        return ResponseEntity.ok(endedCampanha);
     }
 }

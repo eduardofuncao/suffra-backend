@@ -57,6 +57,7 @@ public class CampanhaService {
        }
        foundCampanha.setDataFim(LocalDateTime.now());
        foundCampanha.setIdRegiaoVencedora(campanhaRepository.findIdOfRegiaoWithHighestContador(foundCampanha.getId()));
+       campanhaRepository.save(foundCampanha);
        return campanhaMapper.campanhaToCampanhaDTO(foundCampanha);
     }
 

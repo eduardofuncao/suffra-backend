@@ -4,10 +4,11 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
-public class CampanhaDTO {
+public class CampanhaDTO extends RepresentationModel<CampanhaDTO> {
 
     private long id;
 
@@ -24,7 +25,6 @@ public class CampanhaDTO {
     private String endpoint;
 
     @NotNull(message = "Data de início é obrigatória")
-    @Future(message = "A data de início deve ser futura")
     private LocalDateTime dataInicio;
 
     @NotNull(message = "Data de fim é obrigatória")

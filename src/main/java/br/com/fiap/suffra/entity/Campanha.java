@@ -30,7 +30,6 @@ public class Campanha {
     private LocalDateTime dataInicio;
 
     @NotNull(message = "Data de fim é obrigatória")
-    @Future(message = "A data de fim deve ser futura")
     private LocalDateTime dataFim;
 
     @NotBlank(message = "o campo Variável contabilizada é obrigatória")
@@ -81,11 +80,11 @@ public class Campanha {
         this.endpoint = endpoint;
     }
 
-    public @NotNull(message = "Data de fim é obrigatória") @Future(message = "A data de fim deve ser futura") LocalDateTime getDataFim() {
+    public @NotNull(message = "Data de fim é obrigatória") LocalDateTime getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(@NotNull(message = "Data de fim é obrigatória") @Future(message = "A data de fim deve ser futura") LocalDateTime dataFim) {
+    public void setDataFim(@NotNull(message = "Data de fim é obrigatória") LocalDateTime dataFim) {
         this.dataFim = dataFim;
     }
 

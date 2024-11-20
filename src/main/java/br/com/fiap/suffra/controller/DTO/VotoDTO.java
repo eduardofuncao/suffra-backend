@@ -2,10 +2,11 @@ package br.com.fiap.suffra.controller.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
-public class VotoDTO {
+public class VotoDTO extends RepresentationModel<VotoDTO> {
 
     private long id;
 

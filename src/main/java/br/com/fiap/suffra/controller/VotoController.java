@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/votos")
 public class VotoController {
@@ -19,12 +22,24 @@ public class VotoController {
 
     @PostMapping
     public ResponseEntity<VotoDTO> criarVoto(@RequestBody VotoDTO votoDTO) {
+        VotoDTO createdVoto = votoService.criarVoto(votoDTO);
+
+        createdVoto.add(linkTo(methodOn(VotoController.class).listarVotos()).withRel("listar-votos"));
+        createdVoto.add(linkTo(methodOn(CampanhaController.class).exibirContador(votoDTO.getId())).withRel("listar-contadores-por-regiao"));
+
         return ResponseEntity.ok(votoService.criarVoto(votoDTO));
     }
 
     @GetMapping
     public ResponseEntity<List<VotoDTO>> listarVotos() {
-        return ResponseEntity.ok(votoService.listarVotos());
+        List<VotoDTO> votosDTO = votoService.listarVotos();
+
+        votosDTO.forEach(votoDTO -> {
+            votoDTO.add(linkTo(methodOn(VotoController.class).atualizarVoto(votoDTO.getId(), votoDTO)).withRel("atualizar-voto"));
+            votoDTO.add(linkTo(methodOn(VotoController.class).deletarVoto(votoDTO.getId())).withRel("deletar-voto"));
+        });
+
+        return ResponseEntity.ok(votosDTO);
     }
 
     @GetMapping("/paginado")

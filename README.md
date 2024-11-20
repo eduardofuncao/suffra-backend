@@ -35,14 +35,14 @@ O Swagger também foi habilitado para a aplicação, sendo acessível em `http:/
   - texto explicativo do projeto, contextatualizando segundo a ótica da energia sustentável
   - Um arquivo ReadMe no Github, incluindo descrição do sistema desenvolvido, com imagens,
     textos explicativos e exemplos de testes (com exemplos JSON para CRUD via Postman).
-- collection do postman
 - fluxo hateoas
-- deploy em nuvem
 - Link do Vídeo demonstrando o software funcionando (não é o vídeo do Pitch) com áudio e
   com duração máxima de 10 minutos (YouTube ou equivalente).
 - endpoints para rodar procedures db
-- erro personalizado pare restrição de foreign key quando deleta
 
+## DONE
 - implementar endpoints para pegar total de contadores de regioes (geral e individual) OK
 - implementar endpoint para encerrar campanha OK
 - exceções personalizadas OK
+- deploy em nuvem OK
+- collection do postman OK
