@@ -9,6 +9,18 @@ link Github: https://github.com/eduardofuncao/suffra-backend
 - Jhoe Yoshio Kochi Hashimoto  553831
 
 ## Contextualização
+Suffra é um projeto que implementa uma competição gameficada para introdução de campanhas de concientização para a população. 
+
+### Compreendendo as entidades do sistema
+De forma genérica, para cada campanha, os usuários contribuirão por meio de votos para alguma região. Ao final do período de campanha, a região com maior quantidade de votos será determinada a vencedore, sendo contemplada com algum benefício.
+
+### Como será utilizado para a entrega
+Especificamente, a proposta apresentada será uma campanha de concientização sobre redução no consumo energético de torres de um condomínio residencial. Para tanto, cada torre terá seu consumo energético contabilizado, e, ao final do período de campanha, a torre com menores gastos energéticos no geral será a vencedora, garantindo aos seus moradores um desconto na conta de condomínio.
+
+No caso mencionado, portanto, temos que as regiões são as torres de condomínio, os votos são as entradas no sistema representado gastos energéticos, e os usuários são os próprios moradores do condomínio.
+
+### Extensões futuras
+Como o sistema foi idealizado de forma que pode ser utilizado para outras categorias que não o consumo energético, seria possível adptá-lo para outras campanhas de concientização: como por exemplo para redução do consumo de água, incentivo para reciclagem de lixo, doações para uma causa de importância à energia sustentável, entre outros. Em todos esses casos, o formato seria mantido: uma disputa gameficada entre regiões para concientização e disputa por algum benefício motivador.
 
 ## Modelagem do projeto
 
@@ -76,7 +88,6 @@ Devido às constraints nas tabelas, é indicado a criação das entidades na seg
 Campanha -> Regiao -> Usuario -> Voto
 
 ## TODO
-- complementar com diagramas entidade relacionamento, diagrama de infra de rede
 - documentação
   - texto explicativo do projeto, contextatualizando segundo a ótica da energia sustentável
   - Um arquivo ReadMe no Github, incluindo descrição do sistema desenvolvido, com imagens,
@@ -94,3 +105,4 @@ Campanha -> Regiao -> Usuario -> Voto
 - collection do postman OK
 - fluxo hateoas OK
 - diagrama de classes OK
+- complementar com diagramas entidade relacionamento, diagrama de infra de rede OK
