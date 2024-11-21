@@ -104,7 +104,8 @@ Campanha → Região → Usuário → Voto
 ---
 
 ## ✅ TODO  
-- 🎥 Link para vídeo demonstrativo (máximo de 10 minutos)  
+- 🎥 Link para vídeo demonstrativo (máximo de 10 minutos)
+- Informações do deploy em nuvem
 - 🛠️ Implementar endpoints para rodar procedures no banco de dados  
 - ⚠️ Exceções para campanhas sem regiões associadas  
 
