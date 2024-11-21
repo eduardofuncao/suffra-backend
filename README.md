@@ -56,8 +56,10 @@ classDiagram
 ```
 
 ### Diagrama Entidade Relacionamento
+![suffra-der-fisico drawio](https://github.com/user-attachments/assets/84106369-ebe5-4055-bb41-9a667a2c8f58)
 
 ### Diagrama de Infraestrutura em nuvem
+![ArquiteturaAzureSufradev](https://github.com/user-attachments/assets/e914f9eb-aa84-4715-be03-bf2a1fba1def)
 
 ### Fluxo HATEOAS
 Será implementado o seguinte fluxo HATEOAS, incluindo o caso de uso de inclusão de voto e encerramento de campanha:
