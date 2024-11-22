@@ -22,8 +22,6 @@ De forma genérica, para cada **campanha**, os **usuários** contribuirão por m
 ### ⚡ Como será utilizado nessa Entrega
 Especificamente, a proposta apresentada será uma campanha de conscientização sobre redução no consumo energético de torres de um condomínio residencial.  
 
-
-
 Ao final do período da campanha, a torre com menores gastos energéticos será a vencedora, garantindo aos seus moradores um desconto na conta de condomínio.  
 
 ### 🚀 Extensões futuras  
@@ -85,6 +83,7 @@ classDiagram
 ### ☁️ Diagrama de Infraestrutura em nuvem  
 ![ArquiteturaAzureSufradev](https://github.com/user-attachments/assets/e914f9eb-aa84-4715-be03-bf2a1fba1def)  
 
+
 ### 🔄 Fluxo HATEOAS  
 Será implementado o seguinte fluxo HATEOAS, incluindo o caso de uso de inclusão de voto e encerramento de campanha:  
 ![image](https://github.com/user-attachments/assets/e4ba7923-0677-4789-8bb9-7ecf0b071fc8)  
@@ -100,6 +99,96 @@ Para testar o projeto, pode ser utilizada a **collection Postman** fornecida em 
 
 **Ordem sugerida para criação das entidades no banco de dados**:  
 Campanha → Região → Usuário → Voto  
+
+## 🚀 Instruções para operacionalização da infra e build do código:
+
+### 1. Configuração do Grupo de Recursos no Azure
+
+Crie o grupo de recursos:
+```bash
+az group create --name rg-sufradev-prd --location eastus
+```
+
+### 2. Criação das VMs:
+VM Backend (Linux):
+```bash
+az vm create \
+  --resource-group rg-sufradev-prd \
+  --name vm-sufradev-linux-back-prd \
+  --image UbuntuLTS \
+  --size Standard_DS2_v2 \
+  --admin-username admsufra \
+  --admin-password sufra123@2024 \
+  --authentication-type password \
+  --storage-sku Standard_LRS \
+  --os-disk-size-gb 30 \
+  --custom-data cloud-init.txt \
+  --public-ip-sku Standard \
+  --tags Environment=Production
+```
+
+VM Frontend (Windows Server):
+```bash
+az vm create \
+  --resource-group rg-sufradev-prd \
+  --name vm-sufradev-windowsserver-front-prd \
+  --image MicrosoftWindowsServer:windows-server:2022-datacenter-azure-edition:latest \
+  --size Standard_D2s_v5 \
+  --admin-username adm-sufra \
+  --admin-password sufra123@2024 \
+  --public-ip-sku Standard \
+  --os-disk-size-gb 128 \
+  --authentication-type password
+```
+
+### 3. Configuração de Portas
+```bash
+az vm open-port --port 80-100 --resource-group rg-sufradev-prd --name vm-sufradev-windowsserver-front-prd
+az vm open-port --port 8080 --resource-group rg-sufradev-prd --name vm-sufradev-linux-back-prd
+az vm open-port --port 22 --resource-group rg-sufradev-prd --name vm-sufradev-linux-back-prd
+az vm open-port --port 443 --resource-group rg-sufradev-prd --name vm-sufradev-linux-back-prd
+```
+
+
+### 4. 🛠 Configuração do Backend (Linux)
+Java 17:
+```bash
+sudo apt update && sudo apt install openjdk-17-jdk -y
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 export PATH=$JAVA_HOME/bin:$PATH
+java -version
+```
+
+Gradle:
+```bash
+sudo apt install gradle
+gradle wrapper
+chmod +x ./gradlew
+./gradlew wrapper --gradle-version 8.0
+./gradlew clean build
+```
+
+### 5. Clonar o Projeto
+```bash
+cd /home/admsufra
+git clone https://github.com/eduardofuncao/suffra-backend.git
+cd suffra-backend
+```
+
+
+### 6. Build e Execução:
+```bash
+cd /home/admsufra/sufrajava/suffra-backend
+ ./gradlew clean build
+./gradlew bootRun
+
+cd /home/admsufra/sufrajava/suffra-backend/build/libs
+java -jar build/libs/suffra-0.0.1-SNAPSHOT.jar
+```
+
+```bash
+ssh admsufra@191.233.254.131
+sufra123@2024
+```
 
 ---
 
