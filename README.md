@@ -97,12 +97,30 @@ Caso um dos endpoints representados seja chamado, os links para a sequência do 
 ---
 
 ## 🧪 Testes  
+### Localmente
 Para testar o projeto, pode ser utilizada a **collection Postman** fornecida em `suffra-collection/`.  
 - Inclui todos os endpoints disponíveis, com exemplos de request body.  
 - O Swagger pode ser acessado em: `http://localhost:8080/swagger-ui/index.html`.  
 
 **Ordem sugerida para criação das entidades no banco de dados**:  
 Campanha → Região → Usuário → Voto  
+
+### Através da VM
+Para testar o projeto, pode ser utilizada a **collection Postman** fornecida em `suffra-collection/`. Utilizar o baseUrl 191.233.254.131:8080/
+- Inclui todos os endpoints disponíveis, com exemplos de request body. 
+- O Swagger pode ser acessado em: `191.233.254.131:8080/swagger-ui/index.html`.
+
+**ATENÇÃO**: Caso a aplicação não esteja rodando na VM, será necessário seguir as instruções abaixo
+- Acessar a VM via SSH
+```bash
+ssh admsufra@191.233.254.131
+sufra123@2024
+```
+- Abrindo projeto e rodando aplicação spring via Gradle
+```bash
+cd /home/suffra-backend/suffra-backend
+java -jar build/libs/suffra-0.0.1-SNAPSHOT.jar
+```
 
 ## 🚀 Instruções para operacionalização da infra e build do código:
 
@@ -180,18 +198,20 @@ cd suffra-backend
 
 
 ### 6. Build e Execução:
+Acessando a VM via SSH
 ```bash
-cd /home/admsufra/sufrajava/suffra-backend
+ssh admsufra@191.233.254.131
+sufra123@2024
+```
+
+Abrindo projeto e rodando aplicação spring via Gradle
+```bash
+cd /home/suffra-backend/suffra-backend
  ./gradlew clean build
 ./gradlew bootRun
 
 cd /home/admsufra/sufrajava/suffra-backend/build/libs
 java -jar build/libs/suffra-0.0.1-SNAPSHOT.jar
-```
-
-```bash
-ssh admsufra@191.233.254.131
-sufra123@2024
 ```
 
 ---
