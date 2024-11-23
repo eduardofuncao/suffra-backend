@@ -9,6 +9,10 @@ Link GitHub: https://github.com/eduardofuncao/suffra-backend
 - Eduardo Felipe Nunes Função  553362  
 - Jhoe Yoshio Kochi Hashimoto  553831  
 
+## 🎥 Vídeos
+- Pitch: https://www.youtube.com/watch?v=3iFR-YL9nfE
+- Funcionamento: https://youtu.be/f99T9J_rPqI
+
 ## 📖 Contextualização  
 **Suffra** é um projeto que implementa uma competição gamificada para introdução de campanhas de conscientização para a população.  
 
@@ -191,22 +195,3 @@ sufra123@2024
 ```
 
 ---
-
-## ✅ TODO  
-- 🎥 Link para vídeo demonstrativo (máximo de 10 minutos)
-- Informações do deploy em nuvem
-- 🛠️ Implementar endpoints para rodar procedures no banco de dados  
-- ⚠️ Exceções para campanhas sem regiões associadas  
-
----
-
-## 🎉 DONE  
-- Endpoints para total de contadores por região ✅  
-- Endpoint para encerrar campanha ✅  
-- Exceções personalizadas ✅  
-- Deploy em nuvem ✅  
-- Collection do Postman ✅  
-- Fluxo HATEOAS ✅  
-- Diagramas (classes, entidade-relacionamento, infraestrutura) ✅
-- 📚 Documentação ✅
-
